@@ -32,7 +32,6 @@ const cwd = path.join(__dirname, '..');
 const client = new VideoStitcherServiceClient();
 
 describe('Quickstart', () => {
-  //TODO: remove this if not using the projectId
   // eslint-disable-next-line no-unused-vars
   let projectId;
 
