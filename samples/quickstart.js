@@ -16,8 +16,6 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-
-
 'use strict';
 
 function main(parent) {
@@ -49,7 +47,8 @@ function main(parent) {
   // const orderBy = 'abc123'
 
   // Imports the Stitcher library
-  const {VideoStitcherServiceClient} = require('@google-cloud/video-stitcher').v1;
+  const {VideoStitcherServiceClient} =
+    require('@google-cloud/video-stitcher').v1;
 
   // Instantiates a client
   const stitcherClient = new VideoStitcherServiceClient();
@@ -63,7 +62,7 @@ function main(parent) {
     // Run request
     const iterable = await stitcherClient.listCdnKeysAsync(request);
     for await (const response of iterable) {
-        console.log(response);
+      console.log(response);
     }
     console.log(iterable);
   }

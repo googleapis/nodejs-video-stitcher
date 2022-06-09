@@ -3193,140 +3193,140 @@ export namespace google {
                     namespace VideoStitcherService {
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|createCdnKey}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#createCdnKey}.
                          * @param error Error, if any
                          * @param [response] CdnKey
                          */
                         type CreateCdnKeyCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.CdnKey) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|listCdnKeys}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#listCdnKeys}.
                          * @param error Error, if any
                          * @param [response] ListCdnKeysResponse
                          */
                         type ListCdnKeysCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.ListCdnKeysResponse) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|getCdnKey}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#getCdnKey}.
                          * @param error Error, if any
                          * @param [response] CdnKey
                          */
                         type GetCdnKeyCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.CdnKey) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|deleteCdnKey}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#deleteCdnKey}.
                          * @param error Error, if any
                          * @param [response] Empty
                          */
                         type DeleteCdnKeyCallback = (error: (Error|null), response?: google.protobuf.Empty) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|updateCdnKey}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#updateCdnKey}.
                          * @param error Error, if any
                          * @param [response] CdnKey
                          */
                         type UpdateCdnKeyCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.CdnKey) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|createVodSession}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#createVodSession}.
                          * @param error Error, if any
                          * @param [response] VodSession
                          */
                         type CreateVodSessionCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.VodSession) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|getVodSession}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#getVodSession}.
                          * @param error Error, if any
                          * @param [response] VodSession
                          */
                         type GetVodSessionCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.VodSession) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|listVodStitchDetails}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#listVodStitchDetails}.
                          * @param error Error, if any
                          * @param [response] ListVodStitchDetailsResponse
                          */
                         type ListVodStitchDetailsCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.ListVodStitchDetailsResponse) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|getVodStitchDetail}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#getVodStitchDetail}.
                          * @param error Error, if any
                          * @param [response] VodStitchDetail
                          */
                         type GetVodStitchDetailCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.VodStitchDetail) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|listVodAdTagDetails}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#listVodAdTagDetails}.
                          * @param error Error, if any
                          * @param [response] ListVodAdTagDetailsResponse
                          */
                         type ListVodAdTagDetailsCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.ListVodAdTagDetailsResponse) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|getVodAdTagDetail}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#getVodAdTagDetail}.
                          * @param error Error, if any
                          * @param [response] VodAdTagDetail
                          */
                         type GetVodAdTagDetailCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.VodAdTagDetail) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|listLiveAdTagDetails}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#listLiveAdTagDetails}.
                          * @param error Error, if any
                          * @param [response] ListLiveAdTagDetailsResponse
                          */
                         type ListLiveAdTagDetailsCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.ListLiveAdTagDetailsResponse) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|getLiveAdTagDetail}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#getLiveAdTagDetail}.
                          * @param error Error, if any
                          * @param [response] LiveAdTagDetail
                          */
                         type GetLiveAdTagDetailCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.LiveAdTagDetail) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|createSlate}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#createSlate}.
                          * @param error Error, if any
                          * @param [response] Slate
                          */
                         type CreateSlateCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.Slate) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|listSlates}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#listSlates}.
                          * @param error Error, if any
                          * @param [response] ListSlatesResponse
                          */
                         type ListSlatesCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.ListSlatesResponse) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|getSlate}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#getSlate}.
                          * @param error Error, if any
                          * @param [response] Slate
                          */
                         type GetSlateCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.Slate) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|updateSlate}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#updateSlate}.
                          * @param error Error, if any
                          * @param [response] Slate
                          */
                         type UpdateSlateCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.Slate) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|deleteSlate}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#deleteSlate}.
                          * @param error Error, if any
                          * @param [response] Empty
                          */
                         type DeleteSlateCallback = (error: (Error|null), response?: google.protobuf.Empty) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|createLiveSession}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#createLiveSession}.
                          * @param error Error, if any
                          * @param [response] LiveSession
                          */
                         type CreateLiveSessionCallback = (error: (Error|null), response?: google.cloud.video.stitcher.v1.LiveSession) => void;
 
                         /**
-                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService|getLiveSession}.
+                         * Callback as used by {@link google.cloud.video.stitcher.v1.VideoStitcherService#getLiveSession}.
                          * @param error Error, if any
                          * @param [response] LiveSession
                          */
@@ -8208,9 +8208,6 @@ export namespace google {
             /** FieldOptions lazy */
             lazy?: (boolean|null);
 
-            /** FieldOptions unverifiedLazy */
-            unverifiedLazy?: (boolean|null);
-
             /** FieldOptions deprecated */
             deprecated?: (boolean|null);
 
@@ -8247,9 +8244,6 @@ export namespace google {
 
             /** FieldOptions lazy. */
             public lazy: boolean;
-
-            /** FieldOptions unverifiedLazy. */
-            public unverifiedLazy: boolean;
 
             /** FieldOptions deprecated. */
             public deprecated: boolean;
