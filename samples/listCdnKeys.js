@@ -30,12 +30,12 @@ function main(projectId, location) {
   const stitcherClient = new VideoStitcherServiceClient();
 
   async function listCdnKeys() {
-    const [cdnKeys] = await stitcherClient.listCdnKeys({
+    const iterable = await stitcherClient.listCdnKeysAsync({
       parent: stitcherClient.locationPath(projectId, location),
     });
     console.info('CDN keys:');
-    for (const cdnKey of cdnKeys) {
-      console.info(cdnKey.name);
+    for await (const response of iterable) {
+      console.log(response.name);
     }
   }
 

@@ -30,12 +30,12 @@ function main(projectId, location) {
   const stitcherClient = new VideoStitcherServiceClient();
 
   async function listSlates() {
-    const [slates] = await stitcherClient.listSlates({
+    const iterable = await stitcherClient.listSlatesAsync({
       parent: stitcherClient.locationPath(projectId, location),
     });
     console.info('Slates:');
-    for (const slate of slates) {
-      console.info(slate.name);
+    for await (const response of iterable) {
+      console.log(response.name);
     }
   }
 
