@@ -25,7 +25,8 @@ function main(projectId, location, slateId) {
   // slateId = 'my-slate';
 
   // Imports the Video Stitcher library
-  const {VideoStitcherServiceClient} = require('@google-cloud/video-stitcher').v1;
+  const {VideoStitcherServiceClient} =
+    require('@google-cloud/video-stitcher').v1;
   // Instantiates a client
   const stitcherClient = new VideoStitcherServiceClient();
 

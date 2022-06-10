@@ -15,7 +15,15 @@
 
 'use strict';
 
-function main(projectId, location, cdnKeyId, hostname, gCdnKeyname, gCdnPrivateKey, akamaiTokenKey = '') {
+function main(
+  projectId,
+  location,
+  cdnKeyId,
+  hostname,
+  gCdnKeyname,
+  gCdnPrivateKey,
+  akamaiTokenKey = ''
+) {
   // [START video_stitcher_update_cdn_key]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
@@ -29,7 +37,8 @@ function main(projectId, location, cdnKeyId, hostname, gCdnKeyname, gCdnPrivateK
   // akamaiTokenKey = 'VGhpcyBpcyBhIHRlc3Qgc3RyaW5nLg==';
 
   // Imports the Video Stitcher library
-  const {VideoStitcherServiceClient} = require('@google-cloud/video-stitcher').v1;
+  const {VideoStitcherServiceClient} =
+    require('@google-cloud/video-stitcher').v1;
   // Instantiates a client
   const stitcherClient = new VideoStitcherServiceClient();
 
@@ -49,8 +58,7 @@ function main(projectId, location, cdnKeyId, hostname, gCdnKeyname, gCdnPrivateK
       request.updateMask = {
         paths: ['hostname', 'akamai_cdn_key'],
       };
-    }
-    else {
+    } else {
       request.cdnKey.googleCdnKey = {
         keyName: gCdnKeyname,
         privateKey: gCdnPrivateKey,

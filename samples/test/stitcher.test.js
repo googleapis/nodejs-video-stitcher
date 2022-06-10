@@ -22,12 +22,12 @@ const {execSync} = require('child_process');
 const {describe, it, before, after} = require('mocha');
 
 const uniqueId = uuidv4().split('-')[0];
-const bucketName = 'cloud-samples-data/media'; 
+const bucketName = 'cloud-samples-data/media';
 
 const projectId = process.env.GCLOUD_PROJECT;
 const location = 'us-central1';
 const slateId = `nodejs-test-stitcher-slate-${uniqueId}`;
-const slateUri = `https://storage.googleapis.com/${bucketName}/ForBiggerEscapes.mp4`
+const slateUri = `https://storage.googleapis.com/${bucketName}/ForBiggerEscapes.mp4`;
 const slateName = `projects/${projectId}/locations/${location}/slates/${slateId}`;
 const slateNameNoProjectId = `/locations/${location}/slates/${slateId}`;
 
@@ -53,18 +53,31 @@ before(async () => {
   } catch (err) {
     // Ignore not found error
   }
-  // Delete the CDN key if it already exists
+  // Delete the Akamai CDN key if it already exists
   try {
-    execSync(`node deleteCdnKey.js ${projectId} ${location} ${cdnKeyId}`, {
-      cwd,
-    });
+    execSync(
+      `node deleteCdnKey.js ${projectId} ${location} ${akamaiCdnKeyId}`,
+      {
+        cwd,
+      }
+    );
+  } catch (err) {
+    // Ignore not found error
+  }
+  // Delete the Google CDN key if it already exists
+  try {
+    execSync(
+      `node deleteCdnKey.js ${projectId} ${location} ${googleCdnKeyId}`,
+      {
+        cwd,
+      }
+    );
   } catch (err) {
     // Ignore not found error
   }
 });
 
-after(async () => {
-});
+after(async () => {});
 
 describe('Slate functions', () => {
   it('should create a slate', () => {
@@ -108,7 +121,6 @@ describe('Slate functions', () => {
 });
 
 describe('CDN key functions', () => {
-
   // Google CDN
 
   it('should create a Google CDN key', () => {

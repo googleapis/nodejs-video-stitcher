@@ -26,18 +26,19 @@ function main(projectId, location, slateId, slateUri) {
   // slateUri = 'https://my-slate-uri/test.mp4';
 
   // Imports the Video Stitcher library
-  const {VideoStitcherServiceClient} = require('@google-cloud/video-stitcher').v1;
+  const {VideoStitcherServiceClient} =
+    require('@google-cloud/video-stitcher').v1;
   // Instantiates a client
   const stitcherClient = new VideoStitcherServiceClient();
 
   async function createSlate() {
     // Construct request
     const request = {
-    	parent: stitcherClient.locationPath(projectId, location),
-    	slate: {
-    		uri: slateUri,
-    	},
-    	slateId: slateId,
+      parent: stitcherClient.locationPath(projectId, location),
+      slate: {
+        uri: slateUri,
+      },
+      slateId: slateId,
     };
     const [slate] = await stitcherClient.createSlate(request);
     console.log(`Slate: ${slate.name}`);
