@@ -23,25 +23,29 @@ const {describe, it, before, after} = require('mocha');
 
 const uniqueId = uuidv4().split('-')[0];
 const bucketName = 'cloud-samples-data/media';
+const vodFileName = 'hls-vod/manifest.m3u8';
 
 const projectId = process.env.GCLOUD_PROJECT;
 const location = 'us-central1';
 const slateId = `nodejs-test-stitcher-slate-${uniqueId}`;
 const slateUri = `https://storage.googleapis.com/${bucketName}/ForBiggerEscapes.mp4`;
-const slateName = `projects/${projectId}/locations/${location}/slates/${slateId}`;
-const slateNameNoProjectId = `/locations/${location}/slates/${slateId}`;
+const slateName = `/locations/${location}/slates/${slateId}`;
 
 const akamaiCdnKeyId = `nodejs-test-stitcher-akamai-key-${uniqueId}`;
-const akamaiCdnKeyName = `projects/${projectId}/locations/${location}/cdnKeys/${akamaiCdnKeyId}`;
-const akamaiCdnKeyNameNoProjectId = `/locations/${location}/cdnKeys/${akamaiCdnKeyId}`;
+const akamaiCdnKeyName = `/locations/${location}/cdnKeys/${akamaiCdnKeyId}`;
 const googleCdnKeyId = `nodejs-test-stitcher-google-key-${uniqueId}`;
-const googleCdnKeyName = `projects/${projectId}/locations/${location}/cdnKeys/${googleCdnKeyId}`;
-const googleCdnKeyNameNoProjectId = `/locations/${location}/cdnKeys/${googleCdnKeyId}`;
+const googleCdnKeyName = `/locations/${location}/cdnKeys/${googleCdnKeyId}`;
 
 const hostname = 'cdn.example.com';
 const gCdnKeyname = 'gcdn-test-key';
 const gCdnPrivateKey = 'VGhpcyBpcyBhIHRlc3Qgc3RyaW5nLg==';
 const akamaiTokenKey = 'VGhpcyBpcyBhIHRlc3Qgc3RyaW5nLg==';
+
+const vodUri = `https://storage.googleapis.com/${bucketName}/${vodFileName}`;
+// VMAP Pre-roll (https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/tags)
+const adTagUri = 'https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/vmap_ad_samples&sz=640x480&cust_params=sample_ar%3Dpreonly&ciu_szs=300x250%2C728x90&gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&impl=s&correlator=';
+const vodSessionName = `/locations/${location}/vodSessions/`;
+
 const cwd = path.join(__dirname, '..');
 
 before(async () => {
@@ -85,7 +89,7 @@ describe('Slate functions', () => {
       `node createSlate.js ${projectId} ${location} ${slateId} ${slateUri}`,
       {cwd}
     );
-    assert.ok(output.includes(slateNameNoProjectId));
+    assert.ok(output.includes(slateName));
   });
 
   it('should show a list of slates', () => {
@@ -128,7 +132,7 @@ describe('CDN key functions', () => {
       `node createCdnKey.js ${projectId} ${location} ${googleCdnKeyId} ${hostname} ${gCdnKeyname} ${gCdnPrivateKey} ''`,
       {cwd}
     );
-    assert.ok(output.includes(googleCdnKeyNameNoProjectId));
+    assert.ok(output.includes(googleCdnKeyName));
   });
 
   it('should show a list of CDN keys', () => {
@@ -169,7 +173,7 @@ describe('CDN key functions', () => {
       `node createCdnKey.js ${projectId} ${location} ${akamaiCdnKeyId} ${hostname} '' '' ${akamaiTokenKey}`,
       {cwd}
     );
-    assert.ok(output.includes(akamaiCdnKeyNameNoProjectId));
+    assert.ok(output.includes(akamaiCdnKeyName));
   });
 
   it('should show a list of CDN keys', () => {
@@ -202,4 +206,35 @@ describe('CDN key functions', () => {
     );
     assert.ok(output.includes('Deleted CDN key'));
   });
+});
+
+describe('VOD session functions', () => {
+  it('should create a VOD session', () => {
+    const output = execSync(
+      `node createVodSession.js ${projectId} ${location} ${vodUri} ${adTagUri}`,
+      {cwd}
+    );
+    assert.ok(output.includes(vodSessionName));
+    this.vodSessionId = output.toString().split('/').pop();
+  });
+
+  it('should get a VOD session', () => {
+    const output = execSync(
+      `node getVodSession.js ${projectId} ${location} ${this.vodSessionId}`,
+      {cwd}
+    );
+    assert.ok(output.includes(vodSessionName));
+  });
+
+  // No list or delete methods for VOD sessions
+
+  // Ad tag details
+
+  // it('should delete a slate', () => {
+  //   const output = execSync(
+  //     `node deleteSlate.js ${projectId} ${location} ${slateId}`,
+  //     {cwd}
+  //   );
+  //   assert.ok(output.includes('Deleted slate'));
+  // });
 });
