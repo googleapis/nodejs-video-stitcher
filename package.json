@@ -39,6 +39,7 @@
     "prelint": "cd samples; npm link ../; npm i"
   },
   "dependencies": {
+    "@google-cloud/video-stitcher": "^0.1.0",
     "google-gax": "^2.12.0"
   },
   "devDependencies": {

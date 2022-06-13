@@ -71,7 +71,7 @@ async function getPage(url) {
   });
 }
 
-before(async () => {
+before(() => {
   // Delete the slate if it already exists
   try {
     execSync(`node deleteSlate.js ${projectId} ${location} ${slateId}`, {
@@ -103,8 +103,6 @@ before(async () => {
     // Ignore not found error
   }
 });
-
-after(async () => {});
 
 describe('Slate functions', () => {
   it('should create a slate', () => {
@@ -304,7 +302,7 @@ describe('VOD session functions', () => {
 });
 
 describe('Live session functions', () => {
-  before(async () => {
+  before(() => {
     // Delete the slate if it already exists
     try {
       execSync(`node deleteSlate.js ${projectId} ${location} ${slateId}`, {
@@ -319,7 +317,7 @@ describe('Live session functions', () => {
     );
   });
 
-  after(async () => {
+  after(() => {
     execSync(`node deleteSlate.js ${projectId} ${location} ${slateId}`, {cwd});
   });
 
