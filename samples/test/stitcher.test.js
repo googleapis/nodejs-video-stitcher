@@ -28,13 +28,16 @@ const liveFileName = 'hls-live/manifest.m3u8';
 
 const projectId = process.env.GCLOUD_PROJECT;
 const location = 'us-central1';
-const slateId = `nodejs-test-stitcher-slate-${uniqueId}`;
+const slateIdPrefix = 'nodejs-test-stitcher-slate-';
+const slateId = `${slateIdPrefix}${uniqueId}`;
 const slateUri = `https://storage.googleapis.com/${bucketName}/ForBiggerEscapes.mp4`;
 const slateName = `/locations/${location}/slates/${slateId}`;
 
-const akamaiCdnKeyId = `nodejs-test-stitcher-akamai-key-${uniqueId}`;
+const akamaiCdnKeyIdPrefix = 'nodejs-test-stitcher-akamai-key-';
+const akamaiCdnKeyId = `${akamaiCdnKeyIdPrefix}${uniqueId}`;
 const akamaiCdnKeyName = `/locations/${location}/cdnKeys/${akamaiCdnKeyId}`;
-const googleCdnKeyId = `nodejs-test-stitcher-google-key-${uniqueId}`;
+const googleCdnKeyIdPrefix = 'nodejs-test-stitcher-google-key-';
+const googleCdnKeyId = `${googleCdnKeyIdPrefix}${uniqueId}`;
 const googleCdnKeyName = `/locations/${location}/cdnKeys/${googleCdnKeyId}`;
 
 const hostname = 'cdn.example.com';
@@ -72,36 +75,47 @@ async function getPage(url) {
 }
 
 before(() => {
-  // Delete the slate if it already exists
-  try {
-    execSync(`node deleteSlate.js ${projectId} ${location} ${slateId}`, {
-      cwd,
+  // Delete existing test slates
+  const slates = execSync(`node listSlates.js ${projectId} ${location}`, {cwd});
+
+  slates
+    .toString()
+    .split(/\r?\n/)
+    .forEach(line => {
+      if (line.includes(`locations/${location}/slates/${slateIdPrefix}`)) {
+        this.nextId = line.split('/').pop();
+        execSync(
+          `node deleteSlate.js ${projectId} ${location} ${this.nextId}`,
+          {
+            cwd,
+          }
+        );
+      }
     });
-  } catch (err) {
-    // Ignore not found error
-  }
-  // Delete the Akamai CDN key if it already exists
-  try {
-    execSync(
-      `node deleteCdnKey.js ${projectId} ${location} ${akamaiCdnKeyId}`,
-      {
-        cwd,
+
+  // Delete existing test CDN keys
+  const keys = execSync(`node listCdnKeys.js ${projectId} ${location}`, {cwd});
+
+  keys
+    .toString()
+    .split(/\r?\n/)
+    .forEach(line => {
+      if (
+        line.includes(
+          `locations/${location}/cdnKeys/${googleCdnKeyIdPrefix}`
+        ) ||
+        line.includes(`locations/${location}/cdnKeys/${akamaiCdnKeyIdPrefix}`)
+      ) {
+        this.nextId = line.split('/').pop();
+
+        execSync(
+          `node deleteCdnKey.js ${projectId} ${location} ${this.nextId}`,
+          {
+            cwd,
+          }
+        );
       }
-    );
-  } catch (err) {
-    // Ignore not found error
-  }
-  // Delete the Google CDN key if it already exists
-  try {
-    execSync(
-      `node deleteCdnKey.js ${projectId} ${location} ${googleCdnKeyId}`,
-      {
-        cwd,
-      }
-    );
-  } catch (err) {
-    // Ignore not found error
-  }
+    });
 });
 
 describe('Slate functions', () => {
