@@ -84,12 +84,16 @@ before(() => {
     .forEach(line => {
       if (line.includes(`locations/${location}/slates/${slateIdPrefix}`)) {
         this.nextId = line.split('/').pop();
-        execSync(
-          `node deleteSlate.js ${projectId} ${location} ${this.nextId}`,
-          {
-            cwd,
-          }
-        );
+        try {
+          execSync(
+            `node deleteSlate.js ${projectId} ${location} ${this.nextId}`,
+            {
+              cwd,
+            }
+          );
+        } catch (err) {
+          // Ignore not found error
+        }
       }
     });
 
@@ -107,13 +111,16 @@ before(() => {
         line.includes(`locations/${location}/cdnKeys/${akamaiCdnKeyIdPrefix}`)
       ) {
         this.nextId = line.split('/').pop();
-
-        execSync(
-          `node deleteCdnKey.js ${projectId} ${location} ${this.nextId}`,
-          {
-            cwd,
-          }
-        );
+        try {
+          execSync(
+            `node deleteCdnKey.js ${projectId} ${location} ${this.nextId}`,
+            {
+              cwd,
+            }
+          );
+        } catch (err) {
+          // Ignore not found error
+        }
       }
     });
 });
